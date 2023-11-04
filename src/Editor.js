@@ -28,7 +28,8 @@ export default function Editor(data) {
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
-        tabSize: 4
+        tabSize: 4,
+        fontFamily: 'IBM Plex Mono'
       }}
     />
     

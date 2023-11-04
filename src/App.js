@@ -4,6 +4,9 @@ import Editor from "./Editor"
 import { quantum } from 'ldrs';
 import { submission } from "./api/RequestMethod";
 import "./customScrollbar/CustomScrollbar.css"
+import walkingGif from "./assets/walking.gif"
+import runningGif from "./assets/running.gif"
+import slashGif from "./assets/slash.gif"
 
 quantum.register()
 
@@ -11,6 +14,7 @@ function App() {
   const [code, updateCode] = useState(``);
   const [dark, updateDark] = useState(false);
   const [loading, setLoading] = useState(false);
+  const [complete, setComplete] = useState(false);
   const [selectedLanguage, setSelectedLanguage] = useState('54');
   const [input, setInput] = useState(``);
   const [output, setOutput] = useState(``);
@@ -24,12 +28,35 @@ function App() {
     71 : "python",
     22 : "golang"
   }
+
+  const sampleSubmit = async (e) => {
+    e.preventDefault()
+    console.log('1')
+    setLoading(true)
+
+    setTimeout(() => {
+      // setButtonBackground(walkingGif);
+      setLoading(false);
+      console.log('2')
+      setComplete(true);
+      setTimeout(() => {
+        // setButtonBackground(walkingGif);
+        setComplete(false);
+        console.log('3')
+      }, 2100);
+    }, 3000);
+  } 
   
   const submitCode = async (e) => {
     e.preventDefault()
+
     try {
       setLoading(true)
-      const response = await submission(selectedLanguage, code, input)
+
+      const response = await submission(selectedLanguage, code, input);
+      setLoading(false);
+      setComplete(true);
+
       let stdout = response.stdout;
 
       if (!stdout) {
@@ -38,7 +65,11 @@ function App() {
       else {
         setOutput(atob(stdout))
       }
-      setLoading(false)
+      setTimeout(() => {
+        // setButtonBackground(walkingGif);
+        setComplete(false);
+        // console.log('3')
+      }, 1900);    
     }
     catch (err) {
 
@@ -49,14 +80,11 @@ function App() {
     <div className="App">
       <div className="editor-wrapper">
         <div className="navbar">
-          <label style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center"
-          }}>
+          <label>
             Programming Language:
 
-            <select name="selectedLanguage"
+            <select 
+            name="selectedLanguage"
             value={selectedLanguage} // ...force the select's value to match the state variable...
             onChange={e => setSelectedLanguage(e.target.value)} 
             >
@@ -70,9 +98,13 @@ function App() {
             </select>
           </label>
           <button
-            onClick={e => submitCode(e)}
+            onClick={e => sampleSubmit(e)}
+            className="run-button"
+            style={{
+              backgroundImage: `url(${loading ? runningGif : (complete ? slashGif : walkingGif)})`
+            }}
           >
-            Run
+            RUN
           </button>
         </div>
         <div className="editor">
@@ -104,15 +136,7 @@ function App() {
             <p className="inp-out-header">Output</p>
           </div>
           {loading ? (
-            <div
-              style={{
-                height: "90%",
-                width: "90%",
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "center"
-              }}
-            >
+            <div className="loading-div">
               <l-quantum
                 size = "45"
                 speed = "1.75"

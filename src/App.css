@@ -24,7 +24,6 @@
 
 .output {
   padding: 0;
-
   flex: 1;
   background-color: #151515;
 }
@@ -50,10 +49,10 @@
 .navbar {
   width: 100%;
   height: 40px;
-  background-color: grey;
+  background-color: rgb(47, 47, 47);
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
 }
 
 textarea {
@@ -66,4 +65,43 @@ textarea {
   width: 93%;
   resize: none;
   border: none;
+}
+
+.loading-div {
+  height: 90%;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 50px;
+  color: #fcfcfc;
+}
+
+.run-button {
+  font-family: 'IBM Plex Mono';
+  text-align: left;
+  border: none;
+  width: 110px;
+  height: 40px;
+  color: #fcfcfc;
+  font-size: 17px;
+  background-color: rgb(82, 82, 82);
+  padding: 7px;
+  background-size: cover;
+  cursor: pointer;
+}
+
+select {
+  font-family: 'IBM Plex Mono';
+  color: #f3f3f3;
+  background-color: #272923;
+  width: 150px;
+  height: 30px;
+  margin: 5px;
 }

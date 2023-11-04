@@ -28,6 +28,7 @@ export const submission = async (language_id, code, input) => {
     
     try {
         const response = await axios.request(options);
+        console.log(response)
         return response.data
     } catch (error) {
         console.error(error);
