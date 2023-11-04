@@ -5,6 +5,8 @@ export const submission = async (language_id, code, input) => {
         input = null;
     }
 
+    console.log(process.env.REACT_APP_X_RAPIDAPI_HOST)
+
     let options = {
         method: 'POST',
         url: 'https://judge0-ce.p.rapidapi.com/submissions',
@@ -16,8 +18,8 @@ export const submission = async (language_id, code, input) => {
         headers: {
             'content-type': 'application/json',
             'Content-Type': 'application/json',
-            'X-RapidAPI-Key': '7106ac827emsh505e6f3035158a1p1ac3b9jsn6e529ebbb607',
-            'X-RapidAPI-Host': 'judge0-ce.p.rapidapi.com'
+            'X-RapidAPI-Key': process.env.REACT_APP_X_RAPIDAPI_KEY,
+            'X-RapidAPI-Host': process.env.REACT_APP_X_RAPIDAPI_HOST
         },
         data: {
             language_id: language_id,
