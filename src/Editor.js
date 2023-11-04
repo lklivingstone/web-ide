@@ -2,7 +2,11 @@ import React from "react";
 import AceEditor from "react-ace";
 
 import 'brace/mode/c_cpp';
+import 'brace/mode/csharp';
+import 'brace/mode/java';
 import 'brace/mode/javascript';
+import 'brace/mode/python';
+import 'brace/mode/golang';
 import 'brace/theme/github';
 import 'brace/theme/monokai';
 
@@ -10,17 +14,17 @@ export default function Editor(data) {
   return (
 
     <AceEditor
-      mode="c_cpp"
-      theme="monokai"
-      onChange={data.onChange}
-      name="abcd"
-      fontSize={14}
-      width='100%'
-      height='100%'
+      mode = {data.mode}
+      theme = "monokai"
+      onChange = {data.onChange}
+      name = "abcd"
+      fontSize = {14}
+      width = '100%'
+      height = '100%'
       // editorProps={{
       //   $blockScrolling: true
       // }}
-      setOptions={{
+      setOptions = {{
         enableBasicAutocompletion: true,
         enableLiveAutocompletion: true,
         enableSnippets: true,
