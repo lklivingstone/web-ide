@@ -98,7 +98,7 @@ function App() {
             </select>
           </label>
           <button
-            onClick={e => sampleSubmit(e)}
+            onClick={e => submitCode(e)}
             className="run-button"
             style={{
               backgroundImage: `url(${loading ? runningGif : (complete ? slashGif : walkingGif)})`
