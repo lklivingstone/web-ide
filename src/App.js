@@ -31,25 +31,24 @@ function App() {
 
   const sampleSubmit = async (e) => {
     e.preventDefault()
-    console.log('1')
     setLoading(true)
 
     setTimeout(() => {
       // setButtonBackground(walkingGif);
       setLoading(false);
-      console.log('2')
       setComplete(true);
       setTimeout(() => {
         // setButtonBackground(walkingGif);
         setComplete(false);
-        console.log('3')
       }, 2100);
     }, 3000);
   } 
   
   const submitCode = async (e) => {
     e.preventDefault()
-
+    if (code !== ``) {
+      return;
+    }
     try {
       setLoading(true)
 
