@@ -46,7 +46,7 @@ function App() {
   
   const submitCode = async (e) => {
     e.preventDefault()
-    if (code !== ``) {
+    if (code === ``) {
       return;
     }
     try {
